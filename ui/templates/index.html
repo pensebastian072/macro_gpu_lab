@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}macro_gpu_lab &mdash; multi-asset leans{% endblock %}
+{% block content %}
+      <div class="card mb-2">
+        <div class="card-header">
+          <h3 class="card-title">Gate verdicts</h3>
+          <span class="card-subtitle ms-2 text-muted" id="mgSummary">loading&hellip;</span>
+        </div>
+        <div class="card-body py-2">
+          <div class="text-muted small">
+            Two models &mdash; a random forest and a small torch MLP &mdash; over a macro
+            feature panel, each evaluated at a 5-day and 21-day horizon. Both stay
+            <strong>SHADOW</strong> until they clear the canonical gate:
+            <span class="mono">PBO &lt; 0.5</span> <em>and</em>
+            <span class="mono">Deflated Sharpe ratio &gt; 1.645</span>. The bar was 0.0
+            until 2026-07-30 &mdash; a <span class="mono">ratio &gt; 0</span> test is only
+            a median test, which best-of-8 pure noise clears about 45% of the time.
+            This flag stores only booleans, not the underlying statistics, so unlike the
+            sibling benches these verdicts cannot be re-derived here &mdash; they are
+            shown as the bench wrote them.
+          </div>
+          <div class="table-responsive mt-2">
+            <table class="table table-vcenter table-sm card-table mono">
+              <thead><tr>
+                <th>Model</th><th class="text-end">Horizon</th>
+                <th class="text-center">Gate</th><th class="text-center">Promoted</th>
+              </tr></thead>
+              <tbody id="mgGateBody"><tr><td colspan="4" class="text-muted">loading&hellip;</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Multi-asset universe</h3>
+          <span class="card-subtitle ms-2 text-muted" id="mgAssetCount"></span>
+        </div>
+        <div class="card-body py-2">
+          <div class="text-muted small">
+            Per-asset directional lean, grouped by the macro force each asset is mapped to.
+            <strong>These are display only.</strong> Because no model has cleared the gate,
+            none of these leans sizes, gates or vetoes anything &mdash; they are the output
+            of a model that has not earned the right to be acted on.
+            <span class="mono">p_up</span> is the modelled probability of an up move;
+            <span class="mono">conviction</span> is its distance from a coin flip.
+          </div>
+        </div>
+        <div class="table-responsive" style="max-block-size:65vh">
+          <table class="table table-vcenter table-sm card-table mono">
+            <thead><tr>
+              <th>Force</th><th>Asset</th>
+              <th class="text-center">Lean</th>
+              <th class="text-end">p_up 5d</th>
+              <th class="text-end">p_up 21d</th>
+              <th class="text-end">Conviction</th>
+            </tr></thead>
+            <tbody id="mgBody"><tr><td colspan="6" class="text-muted">loading&hellip;</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+{% endblock %}
+{% block scripts %}
+<script>
+function leanBadge(v){
+  if(v>0) return '<span class="badge bg-green">&#9650; up</span>';
+  if(v<0) return '<span class="badge bg-red">&#9660; down</span>';
+  return '<span class="badge bg-secondary">&ndash; flat</span>';
+}
+
+async function loadMacroGpu(){
+  let d; try { d = await getJSON('/api/macro_gpu'); } catch(e){ return; }
+  setSourcePills(d);
+
+  const enforced = (d.enforce||'no') !== 'no';
+  const age = d.age_days!=null ? `${fmt(d.age_days,1)} days old` : 'age unknown';
+  $('mgSummary').innerHTML =
+    `<span class="badge ${d.stale?'bg-orange':'bg-secondary'}">${d.stale?'STALE':'current'}</span> `
+    + `${esc(age)} &middot; promoted: <strong>${d.n_promoted||0}</strong> / ${d.n_models||0} models &middot; `
+    + `enforce: <strong class="${enforced?'text-red':''}">${esc(d.enforce||'no')}</strong>`;
+
+  const g = d.gate_rows||[];
+  $('mgGateBody').innerHTML = g.map(r=>
+    `<tr><td>${esc(r.model)}</td>
+      <td class="text-end">${esc(r.horizon)}</td>
+      <td class="text-center">${r.passes
+        ? '<span class="badge bg-green">PASS</span>'
+        : '<span class="badge bg-secondary">fail</span>'}</td>
+      <td class="text-center">${r.promoted
+        ? '<span class="badge bg-green">yes</span>'
+        : '<span class="text-muted">no</span>'}</td></tr>`
+  ).join('') || `<tr><td colspan="4" class="text-muted">no gate rows</td></tr>`;
+
+  const rows = d.asset_rows||[];
+  $('mgAssetCount').textContent = rows.length
+    ? `${rows.length} assets across ${(d.forces||[]).length} macro forces`
+    : '';
+  let lastForce = null;
+  $('mgBody').innerHTML = rows.map(r=>{
+    const show = r.force !== lastForce;
+    lastForce = r.force;
+    return `<tr><td class="${show?'':'text-muted opacity-50'}">${show?esc(r.force):''}</td>
+      <td><strong>${esc(r.symbol)}</strong></td>
+      <td class="text-center">${leanBadge(r.lean)}</td>
+      <td class="text-end">${r.p_up_5d!=null?fmt(r.p_up_5d,4):'<span class="text-muted">–</span>'}</td>
+      <td class="text-end">${r.p_up_21d!=null?fmt(r.p_up_21d,4):'<span class="text-muted">–</span>'}</td>
+      <td class="text-end text-muted">${r.conviction!=null?fmt(r.conviction,3):'–'}</td></tr>`;
+  }).join('') || `<tr><td colspan="6" class="text-muted">${esc(d.note||'no assets in flag')}</td></tr>`;
+}
+loadMacroGpu();
+setInterval(loadMacroGpu, 60000);
+</script>
+{% endblock %}

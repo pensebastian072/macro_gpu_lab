@@ -1,0 +1,47 @@
+//@version=5
+// macro_gpu_lab -- surprise-shift signal (TRANSPARENT APPROXIMATION)
+// Fires when the market is CALM (SPY realized vol below its median) yet
+// cross-asset STRESS is rising -- the setup the RF associates with a vol
+// eruption from calm. This is an approximation of the Python RF model; the
+// authoritative signal is journal/flags/tv_signal.json.
+//
+// SHADOW / UNVALIDATED: this did NOT clear the overfit gate (DSR < 0). PF>1 is
+// not significance. Edge is ~2016-2026 specific. Paper/manual use only.
+indicator("macro_gpu surprise-shift (approx)", overlay=true)
+
+hz = input.int(21, "Horizon (days)")
+volMedLen = input.int(120, "Vol median window")
+
+// --- cross-asset inputs (daily) --- chosen to match the RF's top features:
+// spy_vol20, vix_chg20, absorption/avg_pairwise_corr (assets bunching).
+spy = request.security("AMEX:SPY", "D", close)
+qqq = request.security("NASDAQ:QQQ", "D", close)
+eem = request.security("AMEX:EEM", "D", close)
+hyg = request.security("AMEX:HYG", "D", close)
+vix = request.security("CBOE:VIX", "D", close)
+
+// --- calm filter: SPY realized vol <= trailing median ---
+ret = math.log(spy / spy[1])
+rv = ta.stdev(ret, hz)
+calm = rv <= ta.median(rv, volMedLen)
+
+// --- vol ticking up from calm (vix_chg20 was the #2 feature) ---
+vixRising = ta.change(vix, 20) > 0
+vixLow = vix < ta.percentile_nearest_rank(vix, 252, 40)   // complacent level
+
+// --- avg cross-asset correlation rising (absorption/co-movement proxy) ---
+rq = math.log(qqq / qqq[1])
+re = math.log(eem / eem[1])
+rh = math.log(hyg / hyg[1])
+avgCorr = (ta.correlation(ret, rq, 20) + ta.correlation(ret, re, 20)
+           + ta.correlation(ret, rh, 20)) / 3.0
+corrRising = ta.change(avgCorr, 5) > 0.1
+
+// eruption-from-calm setup: calm + complacent, but vol starting to lift and
+// assets starting to bunch together.
+signal = calm and vixLow and vixRising and corrRising
+
+plotshape(signal, title="surprise-shift", style=shape.triangleup,
+          location=location.belowbar, color=color.orange, size=size.small)
+alertcondition(signal, "macro_gpu surprise-shift",
+     "Calm-state vol-eruption setup: consider long-vol / risk-off (SHADOW signal)")

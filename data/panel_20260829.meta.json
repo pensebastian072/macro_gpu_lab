@@ -1,0 +1,208 @@
+{
+  "built_at": "2026-08-29T21:30:32.957004+00:00",
+  "n_assets": 22,
+  "n_rows": 3652,
+  "date_start": "2016-08-30",
+  "date_end": "2026-08-29",
+  "dropped": [],
+  "provenance": {
+    "US10Y": {
+      "yahoo_rows": 2511,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2511,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "TLT": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "TIP": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "DXY": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "EURUSD": {
+      "yahoo_rows": 2601,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2601,
+      "start": "2016-08-30",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "USDJPY": {
+      "yahoo_rows": 2601,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2601,
+      "start": "2016-08-30",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "GBPUSD": {
+      "yahoo_rows": 2601,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2601,
+      "start": "2016-08-30",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "USDCAD": {
+      "yahoo_rows": 2601,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2601,
+      "start": "2016-08-30",
+      "end": "2026-08-29",
+      "overlap_corr": null
+    },
+    "USDCNH": {
+      "yahoo_rows": 2600,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2600,
+      "start": "2016-08-30",
+      "end": "2026-08-29",
+      "overlap_corr": null
+    },
+    "SPY": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "QQQ": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "IWM": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "EEM": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "XLF": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "VIX": {
+      "yahoo_rows": 2513,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2513,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "GOLD": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "OIL": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "COPPER": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "HYG": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "LQD": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "BIL": {
+      "yahoo_rows": 2512,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 2512,
+      "start": "2016-08-31",
+      "end": "2026-08-28",
+      "overlap_corr": null
+    },
+    "BTC": {
+      "yahoo_rows": 3650,
+      "stooq_rows": 0,
+      "source": "yahoo",
+      "rows": 3650,
+      "start": "2016-08-31",
+      "end": "2026-08-29",
+      "overlap_corr": null
+    }
+  }
+}

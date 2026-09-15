@@ -1,0 +1,220 @@
+{
+  "as_of": "2026-08-15T22:34:11.568095+00:00",
+  "stale": false,
+  "enforce": "no",
+  "promoted": {
+    "rf": false,
+    "torch_mlp": false
+  },
+  "gate": {
+    "rf": {
+      "5d": false,
+      "21d": false
+    },
+    "torch_mlp": {
+      "5d": false,
+      "21d": false
+    }
+  },
+  "assets": {
+    "BIL": {
+      "force": "liquidity",
+      "p_up": {
+        "5d": 0.6306,
+        "21d": 0.4014
+      },
+      "lean": 1,
+      "conviction": 0.032
+    },
+    "BTC": {
+      "force": "crypto",
+      "p_up": {
+        "5d": 0.5237,
+        "21d": 0.5061
+      },
+      "lean": 1,
+      "conviction": 0.0298
+    },
+    "COPPER": {
+      "force": "commodities",
+      "p_up": {
+        "5d": 0.5048,
+        "21d": 0.501
+      },
+      "lean": 1,
+      "conviction": 0.0058
+    },
+    "EEM": {
+      "force": "equities",
+      "p_up": {
+        "5d": 0.5193,
+        "21d": 0.4961
+      },
+      "lean": 1,
+      "conviction": 0.0154
+    },
+    "GOLD": {
+      "force": "commodities",
+      "p_up": {
+        "5d": 0.5075,
+        "21d": 0.5098
+      },
+      "lean": 1,
+      "conviction": 0.0173
+    },
+    "HYG": {
+      "force": "credit",
+      "p_up": {
+        "5d": 0.5021,
+        "21d": 0.444
+      },
+      "lean": -1,
+      "conviction": 0.0539
+    },
+    "IWM": {
+      "force": "equities",
+      "p_up": {
+        "5d": 0.5254,
+        "21d": 0.5099
+      },
+      "lean": 1,
+      "conviction": 0.0353
+    },
+    "LQD": {
+      "force": "credit",
+      "p_up": {
+        "5d": 0.4858,
+        "21d": 0.48
+      },
+      "lean": -1,
+      "conviction": 0.0342
+    },
+    "OIL": {
+      "force": "commodities",
+      "p_up": {
+        "5d": 0.4746,
+        "21d": 0.475
+      },
+      "lean": -1,
+      "conviction": 0.0504
+    },
+    "QQQ": {
+      "force": "equities",
+      "p_up": {
+        "5d": 0.5592,
+        "21d": 0.5116
+      },
+      "lean": 1,
+      "conviction": 0.0708
+    },
+    "SPY": {
+      "force": "equities",
+      "p_up": {
+        "5d": 0.586,
+        "21d": 0.5935
+      },
+      "lean": 1,
+      "conviction": 0.1795
+    },
+    "TIP": {
+      "force": "rates",
+      "p_up": {
+        "5d": 0.4818,
+        "21d": 0.4709
+      },
+      "lean": -1,
+      "conviction": 0.0473
+    },
+    "TLT": {
+      "force": "rates",
+      "p_up": {
+        "5d": 0.5064,
+        "21d": 0.5036
+      },
+      "lean": 1,
+      "conviction": 0.01
+    },
+    "VIX": {
+      "force": "volatility",
+      "p_up": {
+        "5d": 0.4983,
+        "21d": 0.5439
+      },
+      "lean": 1,
+      "conviction": 0.0422
+    },
+    "XLF": {
+      "force": "equities",
+      "p_up": {
+        "5d": 0.5045,
+        "21d": 0.4978
+      },
+      "lean": 1,
+      "conviction": 0.0023
+    },
+    "US10Y": {
+      "force": "rates",
+      "p_up": {
+        "5d": 0.4749,
+        "21d": 0.4664
+      },
+      "lean": -1,
+      "conviction": 0.0587
+    },
+    "DXY": {
+      "force": "dollar",
+      "p_up": {
+        "5d": 0.4833,
+        "21d": 0.4711
+      },
+      "lean": -1,
+      "conviction": 0.0456
+    },
+    "EURUSD": {
+      "force": "dollar",
+      "p_up": {
+        "5d": 0.4842,
+        "21d": 0.4518
+      },
+      "lean": -1,
+      "conviction": 0.064
+    },
+    "GBPUSD": {
+      "force": "dollar",
+      "p_up": {
+        "5d": 0.4852,
+        "21d": 0.4517
+      },
+      "lean": -1,
+      "conviction": 0.0631
+    },
+    "USDCAD": {
+      "force": "dollar",
+      "p_up": {
+        "5d": 0.4809,
+        "21d": 0.4311
+      },
+      "lean": -1,
+      "conviction": 0.088
+    },
+    "USDCNH": {
+      "force": "china",
+      "p_up": {
+        "5d": 0.4948,
+        "21d": 0.4412
+      },
+      "lean": -1,
+      "conviction": 0.064
+    },
+    "USDJPY": {
+      "force": "dollar",
+      "p_up": {
+        "5d": 0.4769,
+        "21d": 0.4308
+      },
+      "lean": -1,
+      "conviction": 0.0923
+    }
+  },
+  "note": "SHADOW research advisory \u2014 no model promoted enforces anything"
+}

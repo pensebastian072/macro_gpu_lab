@@ -1,0 +1,16 @@
+# GPU stack mirrors Kronos (torch cu121 on RTX 3050). Install torch from the
+# cu121 index; the rest are plain PyPI. Use --native-tls with uv on this box
+# (Windows TLS interception — see win-quant-env).
+#
+#   uv pip install torch --index-url https://download.pytorch.org/whl/cu121 --native-tls
+#   uv pip install -r requirements.txt --native-tls
+torch>=2.0.0
+numpy
+pandas
+pyarrow
+scikit-learn
+joblib
+pytest
+
+# Standalone read-only viewer (ui/app.py, 127.0.0.1:8102)
+flask>=3.0

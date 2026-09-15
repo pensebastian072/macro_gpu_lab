@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+# data + run artifacts are regenerable / large — keep git clean
+data/*.parquet
+journal/models/*.joblib
+journal/models/*.pt
+journal/scorecards/*.json
+journal/flags/*.json
+journal/runs/
+secrets/
+.pytest_cache/
+graphify-out/
